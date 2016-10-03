@@ -41,19 +41,19 @@ export default {
 	},
 	"Pain": {
 		"Severity": {
-			"Interference with everyday functioning": null,
+			"Being dysfunctional": null,
 			"Sleep interruption":     null,
 			"Insufficient analgesia": null,
 			"Mood": null,
 		},
 		"Frequency": {
-			"Interference with everyday functioning": null,
+			"Being dysfunctional": null,
 			"Sleep interruption":     null,
 			"Insufficient analgesia": null,
 			"Mood": null,
 		},
 		"Longevity": {
-			"Interference with everyday functioning": null,
+			"Being dysfunctional": null,
 			"Sleep interruption":     null,
 			"Insufficient analgesia": null,
 			"Mood": null,
@@ -62,7 +62,7 @@ export default {
 	"Intimacy/sex": {
 		"Self":    null,
 		"Partner": null,
-		"Other":   null,
+		"Others":   null,
 	},
 	"Talking": {
 		"Family": {
