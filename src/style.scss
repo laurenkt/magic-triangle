@@ -1,0 +1,202 @@
+@import "normalize";
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "base/base";
+
+body {
+	padding: 40px;
+	background: #eee;
+}
+
+@mixin clearfix {
+	&::after {
+		clear: both;
+		content: "";
+		display: block;
+	}
+}
+
+.magic-triangle {
+	h3 {
+		text-align: center;
+
+		// Close buttons
+		a {
+			font-weight: normal;
+			font-size: 50%;
+			background: #ddd;
+			border-radius: 5px;
+			vertical-align: middle;
+			padding: 5px;
+		}
+	}
+
+	a {
+		&.selected {
+			background: black;
+			color: white;
+			outline: 5px solid black;
+		}
+
+		&:active {
+			outline: 5px solid yellow;
+			background: yellow;
+			border-radius: 0;
+		}
+	}
+
+	.mt-set ~ .mt-set {
+		border-top: 20px solid #eee;
+	}
+
+	.mt-set {
+		@include clearfix;
+
+		transform-origin: 0 0;
+		height: auto;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		animation: zoomFromClick 1000ms;
+
+		@keyframes zoomFromClick {
+			from {
+				transform:  scale(0.2, 0.2);
+				background: yellow;
+			}
+			to {
+				background: white;
+				transform:  scale(1, 1);
+			}
+		}
+	}
+
+	> .mt-set {
+		background: white;
+		padding: 20px;
+	}
+
+	.mt-cell {
+		float: left;
+		padding: 10px;
+		width: 37%;
+	}
+
+	.mt-children {
+		float: left;
+		width: 63%;
+		@include clearfix;
+
+		.mt-cell {
+			width: 52%;
+		}
+
+		.mt-children {
+			width: 48%;
+
+			.mt-cell {
+				width: 100%;
+			}
+		}
+	}
+}
+
+.-tp {
+	position: relative;
+	padding: 2rem;
+	min-width: 200px;
+	width: 100%;
+	margin-bottom: $small-spacing;
+}
+
+.-tp-labels {
+	width: 100%;
+
+	p {
+		width: auto;
+		position: absolute;
+		margin: 0;
+	}
+
+	.-tp-label-a {
+		text-align: center;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	.-tp-label-b,
+	.-tp-label-c {
+		text-align: left;
+		bottom: 0;
+		display: inline;
+		left: 0;
+	}
+
+	.-tp-label-c {
+		text-align: right;
+		left: inherit;
+		right: 0;
+	}
+}
+
+.-tp-plot {
+	position: relative;
+	width: 100%;
+	padding-bottom: 86%;
+	background-image: url('images/triangle-mask.png'), url('images/triangle-scaled.png');
+	background-size: 200% 200%, 100% 100%;
+	background-position: center;
+	//background-position: 100px 100px;
+	background-repeat: no-repeat;
+}
+
+.-tp-marker {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	margin: -10px 0 0 -10px;
+	background: url('images/circle-scaled.png');
+	background-size: 100% 100%;
+}
+
+.-slider-background {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+	height: 19px;
+	margin: 40px 0 20px;
+	background: url('images/slider-scaled.png');
+	background-size: 100% 100%;
+}
+
+.-slider-marker {
+	position: absolute;
+	width: 20px;
+	top: -18px;
+	margin-left: -10px;
+	height: 17px;
+	background: url('images/slider-marker.png');
+	background-size: 100% 100%;
+}
+
+.-slider-labels {
+	p {
+		position: absolute;
+		top: 20px;
+		margin-top: 0;
+		line-height: 1.7rem;
+		left: 0;
+		width: 100%;
+
+		&.-slider-label-left {
+			text-align: left;
+		}
+
+		&.-slider-label-right {
+			text-align: right;
+		}
+	}
+}
