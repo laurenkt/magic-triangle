@@ -51,8 +51,10 @@ const StatelessCell = props => {
 				</div>}
 			{step === 1 &&
 				<div>
+					<p>Move the red marker to compare how you are affected:</p>
 					<TernaryPlot values={props.ratios} labels={props.selected.map(plot_label)}
 						onChange={ratios => props.onChange({ratios})} />
+					<p>Adjust the slider to describe how severe the problem is:</p>
 					<Slider value={props.severity}
 						onChange={severity => props.onChange({severity})} />
 				</div>}
