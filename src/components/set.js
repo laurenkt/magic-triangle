@@ -1,20 +1,14 @@
 import React       from "react";
 import { connect } from "react-redux";
-import Cell      from "./cell";
+import Cell        from "./cell";
 import descriptors from "../descriptors.json";
-import { addResultToParent,
+import {
+	addResultToParent,
 	removeResult,
 	updateResult,
-	copyResult} from "../reducers/results";
-
-const getResultTree = (results, root) => {
-	const denormalize = node => ({
-		...node.toJS(),
-		children: node.get("children").map(id => denormalize(results.get(id))).toArray(),
-	});
-
-	return denormalize(results.get(root));
-};
+	copyResult,
+	getResultTree,
+} from "../reducers/results";
 
 const mapStateToProps = (state, ownProps) => ({
 	root: getResultTree(state.results, ownProps.root),
@@ -72,7 +66,9 @@ const Set = ({ root, context, onLabelClick, onRemoveClick, onCellChange, onCopyC
 		<div ref={register_offset_for_parent(root.id)} className="mt-children">
 			{root.children.map(child =>
 				<Set key={child.id} root={child} context={context[child.title]}
-					onLabelClick={onLabelClick} onCopyClick={onCopyClick} onRemoveClick={onRemoveClick} onCellChange={onCellChange} style={transform_origin(child)} />)}
+					onLabelClick={onLabelClick} onCopyClick={onCopyClick}
+					onRemoveClick={onRemoveClick} onCellChange={onCellChange}
+					style={transform_origin(child)} />)}
 		</div>
 	</section>;
 

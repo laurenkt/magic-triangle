@@ -54,9 +54,6 @@
 		"comma-dangle": [
 			"error",
 			"always-multiline"
-		],
-		"no-shadow": [
-			"error", { "hoist": "never" }
 		]
 	}
 }

@@ -14,7 +14,6 @@ const scaffold = () => fromJS({
 const initialState = Map({}).set(lastResultId, scaffold());
 
 export default function results(state = initialState, action) {
-	console.log("ACTION", action);
 	switch (action.type) {
 		case "COPY_RESULT":
 			var newId = ++lastResultId;
@@ -97,3 +96,14 @@ export const updateResult = (id, state) => ({
 	type: "UPDATE_RESULT",
 	id,
 });
+
+// Utilities
+
+export const getResultTree = (results, root) => {
+	const denormalize = node => ({
+		...node.toJS(),
+		children: node.get("children").map(id => denormalize(results.get(id))).toArray(),
+	});
+
+	return denormalize(results.get(root));
+};

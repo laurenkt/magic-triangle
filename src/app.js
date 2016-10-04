@@ -3,9 +3,10 @@ import ReactDOM from "react-dom";
 import { createStore } from "redux";
 import { Provider, connect } from "react-redux";
 import reducer from "./reducers/index.js";
-import { addResult } from "./reducers/results.js";
-import { finishQuiz } from "./reducers/gui.js";
-import Set from "./components/set.js";
+import { addResult }   from "./reducers/results.js";
+import { finishQuiz }  from "./reducers/gui.js";
+import Set   from "./components/set.js";
+import Table from "./components/table.js";
 
 require("./style.scss");
 
@@ -16,7 +17,7 @@ const getRootResults = results =>
 
 const mapStateToProps = ({results, gui}) => {
 	return {
-		results: getRootResults(results),
+		results:  getRootResults(results),
 		finished: gui.get("finished"),
 	};
 };
@@ -37,15 +38,7 @@ const MagicTriangle = connect(mapStateToProps, mapDispatchToProps)(({results, fi
 				<p><button onClick={onClick}>Tell us about another problem</button> or <button onClick={onFinish}>Finish the questionnaire</button></p>
 			</div>}
 		{finished &&
-			<table>
-				<tbody>
-					{results.valueSeq().map(r =>
-						([0,1,2]).map(idx =>
-							<tr key={r.get("id") + idx}><td>{r.get("selected").get(idx)}</td><td>{Math.round(r.get("ratios").get(idx) * 100)}%</td></tr>
-					))}
-				</tbody>
-			</table>
-		}
+			<Table results={results} />}
 	</div>
 );
 
