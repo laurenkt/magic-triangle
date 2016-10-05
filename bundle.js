@@ -17133,9 +17133,13 @@ var Row = function Row(_ref2) {
 			{ className: "index" },
 			idx + 1
 		),
-		results.map(function (result) {
+		results.filter(function (r) {
+			return typeof r.ratios !== "undefined";
+		}).map(function (result) {
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Col, { key: result.id, result: result });
-		}).concat(Array.from(Array(3 - results.length).keys()).map(function (idx) {
+		}).concat(Array.from(Array(3 - results.filter(function (r) {
+			return typeof r.ratios !== "undefined";
+		}).length).keys()).map(function (idx) {
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { key: "empty" + idx });
 		}))
 	);
@@ -17276,10 +17280,6 @@ var ComponentWithDefaultSelected = function ComponentWithDefaultSelected(compone
 };
 
 var StatelessCell = function StatelessCell(props) {
-	var can_have_children = props.selected.some(function (label) {
-		return props.context[label];
-	});
-
 	var plot_label = function plot_label(name) {
 		if (!props.context[name]) return name;else if (props.children.length && props.children[0].title === name) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"a",
@@ -17293,7 +17293,7 @@ var StatelessCell = function StatelessCell(props) {
 					return props.onLabelClick(e, name);
 				} },
 			name
-		);
+		); // eslint-disable-line react/prop-types
 	};
 
 	var derived_step = function derived_step(severity, ratios) {
@@ -46671,7 +46671,9 @@ var MagicTriangle = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_react_redu
 				)
 			)
 		),
-		finished && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_table_js__["a" /* default */], { results: results })
+		finished && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_table_js__["a" /* default */], { results: results.filter(function (r) {
+				return typeof r.get("ratios") !== "undefined";
+			}) })
 	);
 });
 
