@@ -7149,7 +7149,6 @@ function gui() {
 	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
 	var action = arguments[1];
 
-	console.log("ACTION", action);
 	switch (action.type) {
 		case "FINISH_QUIZ":
 			return state.set("finished", true);
@@ -7158,6 +7157,7 @@ function gui() {
 			return state;
 	}
 }
+
 // Actions
 
 var finishQuiz = function finishQuiz() {
