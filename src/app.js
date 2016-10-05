@@ -38,7 +38,7 @@ const MagicTriangle = connect(mapStateToProps, mapDispatchToProps)(({results, fi
 				<p><button onClick={onClick}>Tell us about another problem</button> or <button onClick={onFinish}>Finish the questionnaire</button></p>
 			</div>}
 		{finished &&
-			<Table results={results} />}
+			<Table results={results.filter(r => typeof r.get("ratios") !== "undefined")} />}
 	</div>
 );
 

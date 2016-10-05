@@ -35,8 +35,8 @@ Col.propTypes = {
 const Row = ({ results, idx }) =>
 	<tr>
 		<th className="index">{idx + 1}</th>
-		{results.map(result => <Col key={result.id} result={result} />)
-			.concat(Array.from(Array(3 - results.length).keys()).map(idx => <td key={"empty" + idx}></td>))}
+		{results.filter(r => typeof r.ratios !== "undefined").map(result => <Col key={result.id} result={result} />)
+			.concat(Array.from(Array(3 - results.filter(r => typeof r.ratios !== "undefined").length).keys()).map(idx => <td key={"empty" + idx}></td>))}
 	</tr>;
 
 Row.propTypes = {
