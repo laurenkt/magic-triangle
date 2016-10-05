@@ -21,7 +21,7 @@ const StatelessCell = props => {
 		if (props.children.length && props.children[0].title === name)
 			return <a className="selected" href="#" onClick={e => props.onRemoveClick(e, props.children[0].id)}>{name}</a>;
 		else
-			return <a href="#" onClick={e => props.onLabelClick(e, name)}>{name}</a>;
+			return <a href="#" onClick={e => props.onLabelClick(e, name)}>{name}</a>; // eslint-disable-line react/prop-types
 	};
 
 	const derived_step = (severity, ratios) =>
