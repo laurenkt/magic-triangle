@@ -15,13 +15,15 @@ const treeToArray = tree => {
 };
 
 const Col = ({result, of_n}) =>
-	<td colSpan={4 - of_n}>
+	<td className="table-container" colSpan={4 - of_n}>
 		<table>
+			{result.title &&
+				<caption>{result.title}</caption>}
 			<tbody>
-				<tr><th>{result.selected[0]}</th><td>{Math.round(result.ratios[0] * 100)}%</td></tr>
-				<tr><th>{result.selected[1]}</th><td>{Math.round(result.ratios[1] * 100)}%</td></tr>
-				<tr><th>{result.selected[2]}</th><td>{Math.round(result.ratios[2] * 100)}%</td></tr>
-				<tr><th>Severity</th><td>{Math.round(result.severity * 100)}%</td></tr>
+				<tr><td>{result.selected[0]}</td><td>{Math.round(result.ratios[0] * 100)}%</td></tr>
+				<tr><td>{result.selected[1]}</td><td>{Math.round(result.ratios[1] * 100)}%</td></tr>
+				<tr><td>{result.selected[2]}</td><td>{Math.round(result.ratios[2] * 100)}%</td></tr>
+				<tr><th>Overall severity</th><th>{Math.round(result.severity * 100)}%</th></tr>
 			</tbody>
 		</table>
 	</td>;
@@ -39,7 +41,7 @@ const Row = ({ results, idx }) =>
 	</tr>;
 
 Row.propTypes = {
-	results: React.PropTypes.object.isRequired,
+	results: React.PropTypes.array.isRequired,
 	idx:     React.PropTypes.number.isRequired,
 };
 

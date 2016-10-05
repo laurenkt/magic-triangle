@@ -18,7 +18,7 @@ body {
 
 table {
 	width: 100%;
-	margin: 0 auto $small-spacing;
+	margin: 0 auto;
 	table-layout: auto;
 
 	th {
@@ -26,9 +26,30 @@ table {
 		color: white;
 	}
 
-	th, td {
-		border: 2px solid #333;
+	tr {
+		border-bottom: 20px solid #eee;
+	}
+
+	td.table-container {
 		padding: 5px;
+		max-width: 34%;
+		vertical-align: bottom;
+		background: white;
+
+		tr {
+			border-bottom: 0;
+		}
+
+		caption {
+			padding: 5px;
+			font-weight: bold;
+			font-size: 120%;
+		}
+		
+		th, td {
+			border: 2px solid #333;
+			padding: 5px;
+		}
 	}
 }
 
