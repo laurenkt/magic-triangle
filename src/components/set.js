@@ -58,9 +58,9 @@ const transform_origin = child => ({
 	transformOrigin: offsets[child.parent] ? `${0 - Math.round(offsets[child.parent].x - child.origin.x)}px ${0 - Math.round(offsets[child.parent].y - child.origin.y)}px` : "0 0",
 });
 
-const Set = ({ root, context, onLabelClick, onRemoveClick, onCellChange, onCopyClick, ...props }) =>
+const Set = ({ root, context, onLabelClick, onRemoveClick, onCellChange, onCopyClick, giveInstructions, ...props }) =>
 	<section {...props} className="mt-set">
-		<Cell {...root} context={context}
+		<Cell {...root} context={context} giveInstructions={giveInstructions && root.children.length === 0}
 			onLabelClick={onLabelClick(root.id)} onRemoveClick={onRemoveClick}
 			onCopyClick={onCopyClick(root.id)} onChange={onCellChange(root.id)} />
 		<div ref={register_offset_for_parent(root.id)} className="mt-children">
@@ -73,12 +73,13 @@ const Set = ({ root, context, onLabelClick, onRemoveClick, onCellChange, onCopyC
 	</section>;
 
 Set.propTypes = {
-	root:          React.PropTypes.object.isRequired,
-	context:       React.PropTypes.object.isRequired,
-	onLabelClick:  React.PropTypes.func.isRequired,
-	onRemoveClick: React.PropTypes.func.isRequired,
-	onCopyClick:   React.PropTypes.func.isRequired,
-	onCellChange:  React.PropTypes.func.isRequired,
+	root:             React.PropTypes.object.isRequired,
+	context:          React.PropTypes.object.isRequired,
+	onLabelClick:     React.PropTypes.func.isRequired,
+	onRemoveClick:    React.PropTypes.func.isRequired,
+	onCopyClick:      React.PropTypes.func.isRequired,
+	onCellChange:     React.PropTypes.func.isRequired,
+	giveInstructions: React.PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Set);

@@ -16,6 +16,22 @@ body {
 	}
 }
 
+p.instructions {
+	position: absolute;
+	left: 40%;
+	background: #ddd;
+	border-radius: 10px;
+	padding: 5px 10px;
+
+	&.-marker {
+		margin-top: 100px;
+	}
+
+	&.-descriptors {
+		margin-top: -40px;
+	}
+}
+
 table {
 	width: 100%;
 	margin: 0 auto;

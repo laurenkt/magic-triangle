@@ -32,7 +32,7 @@ const MagicTriangle = connect(mapStateToProps, mapDispatchToProps)(({results, fi
 		{!finished &&
 			<div>
 				<div className="magic-triangle">
-					{results.valueSeq().map(r => <Set key={r.get("id")} root={r.get("id")} />)}
+					{results.valueSeq().map((r, idx) => <Set giveInstructions={idx === 0} key={r.get("id")} root={r.get("id")} />)}
 				</div>
 				<p>If you're done you can:</p>
 				<p><button onClick={onClick}>Tell us about another problem</button> or <button onClick={onFinish}>Finish the questionnaire</button></p>
