@@ -14,8 +14,8 @@ const treeToArray = tree => {
 		return ([tree]).concat(treeToArray(tree.children[0]));
 };
 
-const Col = ({result, of_n}) =>
-	<td className="table-container" colSpan={4 - of_n}>
+const Col = ({result}) =>
+	<td className="table-container">
 		<table>
 			{result.title &&
 				<caption>{result.title}</caption>}
@@ -30,14 +30,13 @@ const Col = ({result, of_n}) =>
 
 Col.propTypes = {
 	result: React.PropTypes.object.isRequired,
-	of_n:   React.PropTypes.number.isRequired,
 };
 
 const Row = ({ results, idx }) =>
 	<tr>
 		<th className="index">{idx + 1}</th>
-		{results.map(result =>
-			<Col key={result.id} result={result} of_n={results.length} />)}
+		{results.map(result => <Col key={result.id} result={result} />)
+			.concat(Array.from(Array(3 - results.length).keys()).map(idx => <td key={"empty" + idx}></td>))}
 	</tr>;
 
 Row.propTypes = {
@@ -47,6 +46,9 @@ Row.propTypes = {
 
 const Table = ({results}) =>
 	<table>
+		<thead>
+			<tr><td></td><th>Level 1</th><th>Level 2</th><th>Level 3</th></tr>
+		</thead>
 		<tbody>
 			{results.map((result, idx) =>
 				<Row key={result.id} idx={idx} results={treeToArray(result)} />)}

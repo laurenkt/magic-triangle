@@ -21,9 +21,18 @@ table {
 	margin: 0 auto;
 	table-layout: auto;
 
-	th {
+	tbody th {
 		background: #333;
 		color: white;
+	}
+
+	thead th {
+		background: none;
+		color: black;
+		text-align: center;
+		font-size: 90%;
+		letter-spacing: 1px;
+		text-transform: uppercase;
 	}
 
 	tr {
