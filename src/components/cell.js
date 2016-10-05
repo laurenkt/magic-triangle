@@ -14,8 +14,6 @@ const ComponentWithDefaultSelected = component => props => {
 };
 
 const StatelessCell = props => {
-	const can_have_children = props.selected.some(label => props.context[label]);
-
 	const plot_label = name => {
 		if (!props.context[name])
 			return name;
