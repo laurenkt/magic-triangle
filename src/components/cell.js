@@ -50,7 +50,7 @@ const StatelessCell = props => {
 			{step === 1 &&
 				<div>
 					{props.giveInstructions &&
-						<p className="instructions -marker">&larr; Move the red marker to compare how you are affected</p>}
+						<p className="instructions -marker">&larr; Move the red dot to show how important each item is to you</p>}
 					<TernaryPlot values={props.ratios} labels={props.selected.map(plot_label)}
 						onChange={ratios => props.onChange({ratios})} />
 					{props.giveInstructions &&
