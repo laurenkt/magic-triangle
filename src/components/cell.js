@@ -53,7 +53,7 @@ const StatelessCell = props => {
 					{props.giveInstructions && props.has_done_step_1 &&
 						<p className="instructions -slider">&larr; 2. Adjust the slider to describe how severe the problem is</p>}
 					<Slider value={props.severity}
-						onChange={severity => props.onChange({severity, has_done_step_2:true})} />
+						onChange={severity => props.onChange({severity, has_done_step_1:true, has_done_step_2:true})} />
 				</div>}
 		</div>
 	);

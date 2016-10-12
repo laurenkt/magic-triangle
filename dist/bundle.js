@@ -17370,7 +17370,7 @@ var StatelessCell = function StatelessCell(props) {
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__slider__["a" /* default */], { value: props.severity,
 				onChange: function onChange(severity) {
-					return props.onChange({ severity: severity, has_done_step_2: true });
+					return props.onChange({ severity: severity, has_done_step_1: true, has_done_step_2: true });
 				} })
 		)
 	);
