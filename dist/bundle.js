@@ -17348,7 +17348,7 @@ var StatelessCell = function StatelessCell(props) {
 			props.giveInstructions && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"p",
 				{ className: "instructions -marker" },
-				"\u2190 Move the red marker to compare how you are affected"
+				"\u2190 1. Move the red dot to show how important each item is to you"
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ternary_plot__["a" /* default */], { values: props.ratios, labels: props.selected.map(plot_label),
 				onChange: function onChange(ratios) {
@@ -17357,12 +17357,12 @@ var StatelessCell = function StatelessCell(props) {
 			props.giveInstructions && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"p",
 				{ className: "instructions -descriptors" },
-				"\u2190 Click on a label to give further detail"
+				"\u2190 3. Click on a label to give further detail"
 			),
 			props.giveInstructions && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"p",
 				{ className: "instructions -slider" },
-				"\u2190 Adjust the slider to describe how severe the problem is"
+				"\u2190 2. Adjust the slider to describe how severe the problem is"
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__slider__["a" /* default */], { value: props.severity,
 				onChange: function onChange(severity) {
@@ -46667,7 +46667,7 @@ var MagicTriangle = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_react_redu
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					"button",
 					{ onClick: onFinish },
-					"Finish the questionnaire"
+					"Finish"
 				)
 			)
 		),
