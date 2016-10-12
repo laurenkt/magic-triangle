@@ -3516,7 +3516,10 @@ var scaffold = function scaffold() {
 		selected: [],
 		ratios: undefined,
 		severity: undefined,
-		children: []
+		children: [],
+		has_done_step_0: false,
+		has_done_step_1: false,
+		has_done_step_2: false
 	});
 };
 
@@ -3551,7 +3554,14 @@ function results() {
 			return results(state, addResult()).mergeIn([lastResultId], { parent: action.parent, title: action.title, origin: action.click_coords }).setIn([action.parent, "children"], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_immutable__["fromJS"])([lastResultId]));
 
 		case "UPDATE_RESULT":
-			return state.mergeIn([action.id], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_immutable__["fromJS"])({ ratios: action.ratios, severity: action.severity, selected: action.selected }).filterNot(function (val) {
+			return state.mergeIn([action.id], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_immutable__["fromJS"])({
+				ratios: action.ratios,
+				severity: action.severity,
+				selected: action.selected,
+				has_done_step_0: action.has_done_step_0,
+				has_done_step_1: action.has_done_step_1,
+				has_done_step_2: action.has_done_step_2
+			}).filterNot(function (val) {
 				return typeof val === "undefined";
 			}));
 
@@ -17296,12 +17306,6 @@ var StatelessCell = function StatelessCell(props) {
 		); // eslint-disable-line react/prop-types
 	};
 
-	var derived_step = function derived_step(severity, ratios) {
-		return typeof severity === "undefined" && typeof ratios === "undefined" ? 0 : 1;
-	};
-
-	var step = derived_step(props.severity, props.ratios);
-
 	var button_label = function button_label(num_selected) {
 		return num_selected === 3 ? "Next" : "Choose " + (3 - num_selected) + " more";
 	};
@@ -17318,7 +17322,7 @@ var StatelessCell = function StatelessCell(props) {
 				props.title
 			)
 		),
-		step === 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+		!props.has_done_step_0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
 			null,
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -17337,12 +17341,12 @@ var StatelessCell = function StatelessCell(props) {
 				"button",
 				{ disabled: props.selected.length != 3,
 					onClick: function onClick(_) {
-						return props.onChange({ severity: 0.5, ratios: [0.3333, 0.3333, 0.3333], selected: props.selected });
+						return props.onChange({ severity: 0.5, ratios: [0.3333, 0.3333, 0.3333], selected: props.selected, has_done_step_0: true });
 					} },
 				button_label(props.selected.length)
 			)
 		),
-		step === 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+		props.has_done_step_0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
 			null,
 			props.giveInstructions && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -17352,21 +17356,21 @@ var StatelessCell = function StatelessCell(props) {
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ternary_plot__["a" /* default */], { values: props.ratios, labels: props.selected.map(plot_label),
 				onChange: function onChange(ratios) {
-					return props.onChange({ ratios: ratios });
+					return props.onChange({ ratios: ratios, has_done_step_1: true });
 				} }),
-			props.giveInstructions && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+			props.giveInstructions && props.has_done_step_2 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"p",
 				{ className: "instructions -descriptors" },
 				"\u2190 3. Click on a label to give further detail"
 			),
-			props.giveInstructions && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+			props.giveInstructions && props.has_done_step_1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"p",
 				{ className: "instructions -slider" },
 				"\u2190 2. Adjust the slider to describe how severe the problem is"
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__slider__["a" /* default */], { value: props.severity,
 				onChange: function onChange(severity) {
-					return props.onChange({ severity: severity });
+					return props.onChange({ severity: severity, has_done_step_2: true });
 				} })
 		)
 	);
