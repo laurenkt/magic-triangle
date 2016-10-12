@@ -24,11 +24,6 @@ const StatelessCell = props => {
 			return <a href="#" onClick={e => props.onLabelClick(e, name)}>{name}</a>; // eslint-disable-line react/prop-types
 	};
 
-	const derived_step = (severity, ratios) =>
-		typeof severity === "undefined" && typeof ratios === "undefined" ? 0 : 1;
-
-	const step = derived_step(props.severity, props.ratios);
-
 	const button_label = num_selected =>
 		num_selected === 3 ? "Next" : `Choose ${3 - num_selected} more`;
 
@@ -36,29 +31,29 @@ const StatelessCell = props => {
 		<div className="mt-cell">
 			{props.title &&
 				<h3><span className="selected">{props.title}</span></h3>}
-			{step === 0 &&
+			{!props.has_done_step_0 &&
 				<div>
 					<p>{"Pick three things to compare" + (props.context.__description || "") + "."}</p>
 					<DescriptorList items={Object.keys(props.context).filter(name => name != "__description")}
 						selected={props.selected}
 						onSelection={selected => props.onChange({selected})} />
 					<button disabled={props.selected.length != 3}
-						onClick={_ => props.onChange({severity: 0.5, ratios:[0.3333, 0.3333, 0.3333], selected:props.selected})}>
+						onClick={_ => props.onChange({severity: 0.5, ratios:[0.3333, 0.3333, 0.3333], selected:props.selected, has_done_step_0:true})}>
 						{button_label(props.selected.length)}
 					</button>
 				</div>}
-			{step === 1 &&
+			{props.has_done_step_0 &&
 				<div>
 					{props.giveInstructions &&
 						<p className="instructions -marker">&larr; 1. Move the red dot to show how important each item is to you</p>}
 					<TernaryPlot values={props.ratios} labels={props.selected.map(plot_label)}
-						onChange={ratios => props.onChange({ratios})} />
-					{props.giveInstructions &&
+						onChange={ratios => props.onChange({ratios, has_done_step_1:true})} />
+					{props.giveInstructions && props.has_done_step_2 &&
 						<p className="instructions -descriptors">&larr; 3. Click on a label to give further detail</p>}
-					{props.giveInstructions &&
+					{props.giveInstructions && props.has_done_step_1 &&
 						<p className="instructions -slider">&larr; 2. Adjust the slider to describe how severe the problem is</p>}
 					<Slider value={props.severity}
-						onChange={severity => props.onChange({severity})} />
+						onChange={severity => props.onChange({severity, has_done_step_2:true})} />
 				</div>}
 		</div>
 	);

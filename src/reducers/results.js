@@ -9,6 +9,9 @@ const scaffold = () => fromJS({
 	ratios:   undefined,
 	severity: undefined,
 	children: [],
+	has_done_step_0: false,
+	has_done_step_1: false,
+	has_done_step_2: false,
 });
 
 const initialState = Map({}).set(lastResultId, scaffold());
@@ -46,8 +49,15 @@ export default function results(state = initialState, action) {
 
 		case "UPDATE_RESULT":
 			return state
-				.mergeIn([action.id], 
-					fromJS({ratios:action.ratios, severity:action.severity, selected:action.selected})
+				.mergeIn([action.id],
+					fromJS({
+						ratios:          action.ratios,
+						severity:        action.severity,
+						selected:        action.selected,
+						has_done_step_0: action.has_done_step_0,
+						has_done_step_1: action.has_done_step_1,
+						has_done_step_2: action.has_done_step_2,
+					})
 					.filterNot(val => typeof val === "undefined"));
 
 		case "REMOVE_RESULT":
