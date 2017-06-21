@@ -5,7 +5,7 @@ An alternative tool for patient self-assessment. Intended to help patients refle
 
 The tool as presented is configured for maxillofacial patients, however the principle should extend to other disciplines (by making appropriate changes to `descriptors.json.js`).
 
-This approach is explored in R.Brown, L.Tomasello, D.A.Mitchell, A.Sebald and S.Stepney. The ternary graph as a questionnaire – a new approach to Quality of Life assessment? <b>British Journal of Oral and Maxillofacial Surgery</b>, in press (2017).
+This approach is explored in R.Brown, L.Tomasello, D.A.Mitchell, A.Sebald and S.Stepney. The ternary graph as a questionnaire – a new approach to Quality of Life assessment? <i>British Journal of Oral and Maxillofacial Surgery</i>, in press (2017).
 
 Demo
 ----
