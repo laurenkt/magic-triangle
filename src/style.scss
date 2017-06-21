@@ -3,11 +3,6 @@
 @import "neat/neat";
 @import "base/base";
 
-body {
-	padding: 40px;
-	background: #eee;
-}
-
 @mixin clearfix {
 	&::after {
 		clear: both;
