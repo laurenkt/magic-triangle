@@ -9,9 +9,9 @@ module.exports = env => {
 		},
 		module: {
 			loaders: [
-				{test: /\.js$/,   loaders: ["babel", "eslint"], exclude: /node_modules/},
-				{test: /\.scss$/, loaders: ["style", "css", "sass"]},
-				{test: /\.png/,   loaders: ["url"]},
+				{test: /\.js$/,   loaders: ["babel-loader"], exclude: /node_modules/},
+				{test: /\.scss$/, loaders: ["style-loader", "css-loader", "sass-loader"]},
+				{test: /\.png/,   loaders: ["url-loader"]},
 			],
 		},
 	};
